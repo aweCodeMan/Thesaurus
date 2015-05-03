@@ -25,7 +25,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
     <script src="js/app.js"></script>
 </head>
-<body data-ng-app="betoo">
+<body data-ng-app="thesaurus">
 <div class="wrapper">
 
 @include('partials.navbar')
