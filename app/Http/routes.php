@@ -11,4 +11,6 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', array('uses' => 'ThesaurusController@index', 'as' => 'home'));
+Route::get('/{word}', array('uses' => 'ThesaurusController@show', 'as' => 'show'));
+
