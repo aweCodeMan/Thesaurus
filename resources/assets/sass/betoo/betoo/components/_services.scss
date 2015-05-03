@@ -1,0 +1,33 @@
+.services-row:not(:last-child)
+{
+  margin-bottom: ($margin-between-content-section / 2);
+}
+
+.services-description
+{
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+.services-description:first-of-type
+{
+  margin-top: 30px;
+}
+
+ul.services-features
+{
+  font-size: 1.2em;
+  margin: 30px 0;
+  list-style: none;
+
+  >li
+  {
+    margin-top: 5px;
+  }
+
+  .services-features-check
+  {
+    font-size: .8em;
+    margin: 0 10px;
+  }
+}

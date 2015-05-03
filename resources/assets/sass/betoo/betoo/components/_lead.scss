@@ -1,0 +1,65 @@
+.lead-form
+{
+  margin-top: 20px;
+
+  label
+  {
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+
+  .text-muted
+  {
+    text-transform: none;
+  }
+}
+
+.lead-form-submit
+{
+  margin: 10px 0;
+  padding: 10px 15px;
+}
+
+.lead-form-message
+{
+  resize: vertical;
+}
+
+.lead-form-error-message
+{
+  margin: 15px 0 10px 0;
+}
+
+.lead-form-error-message-inline
+{
+  position: relative;
+
+  p
+  {
+    position: absolute;
+    width: 100%;
+    top: 8px;
+    left : 100%;
+    padding-left: 20px;
+  }
+}
+
+.lead-form-loading-icon
+{
+  color : white;
+  font-size: 1.5em;
+  top: 7px;
+  left: 7px;
+}
+
+.lead-form-success-message
+{
+  color: #ffffff;
+  font-size: 1.3em;
+
+  .glyphicon-ok
+  {
+    font-size: 1.5em;
+    padding: 10px;
+  }
+}

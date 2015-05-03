@@ -1,0 +1,30 @@
+.navbar-default
+{
+  background    : $color-dark-blue;
+  border        : none;
+  border-radius : 0;
+  font-family: $font-sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+
+  .navbar-brand
+  {
+    color: $color-dark-white;
+  }
+
+  .navbar-brand:hover, .navbar-brand:focus, .navbar-brand:active
+  {
+    color: $color-light-teal;
+  }
+}
+
+.navbar-default .navbar-nav > li > a
+ {
+   color : $color-dark-white;
+ }
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:active, .navbar-default .navbar-nav > li > a:focus
+{
+  color: $color-light-teal;
+}

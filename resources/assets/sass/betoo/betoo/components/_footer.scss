@@ -1,0 +1,47 @@
+.footer
+{
+  padding: 40px 0;
+  background: darken($color-dark-blue, 5%);
+  color: $color-dark-white;
+
+  a
+  {
+    color: $color-dark-white;
+  }
+
+  a:hover, a:active, a:focus
+  {
+    color: darken($color-dark-white, 15%);
+    text-decoration: none;
+  }
+}
+
+.footer-contacts
+{
+  color: darken($color-dark-white, 8%);
+  p
+  {
+    margin-bottom: 3px;
+  }
+}
+
+.footer-contacts-important
+{
+  margin: 20px 0;
+}
+
+.footer-contacts-company
+{
+  font-size: 1.5em;
+}
+
+.footer-contacts-telephone
+{
+  font-size: 2em;
+}
+
+.footer-contacts-email
+{
+  font-size: 2em;
+}
+

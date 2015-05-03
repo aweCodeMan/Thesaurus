@@ -1,0 +1,10 @@
+//  Override for validation labels on inputs
+.has-feedback label ~ .form-control-feedback
+{
+  top : 34px;
+}
+
+//  Thicker borders on inputs with feedback
+.has-error .form-control {
+  border-width: 2px;
+}

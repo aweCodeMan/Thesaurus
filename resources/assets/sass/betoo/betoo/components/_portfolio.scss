@@ -1,0 +1,21 @@
+.portfolio-image
+{
+  filter: grayscale(1);
+  margin: 60px auto;
+  transition: all .2s ease;
+  padding: 5px;
+  background: #ffffff;
+  border: 1px solid #CFCFCF;
+  border-radius: 4px;
+}
+
+.portfolio-image:hover, .portfolio-image:active, .portfolio-image:focus
+{
+  filter: grayscale(0)
+}
+
+.portfolio-description
+{
+  margin-top: 30px;
+  font-size: 1.2em;
+}

@@ -1,0 +1,23 @@
+.testimonial-image
+{
+  margin: 30px 0;
+  opacity: 0.8;
+  transition: all .2s ease;
+}
+
+.testimonial-image:hover, .testimonial-image:focus, .testimonial-image:active
+{
+  opacity: 1.0;
+}
+
+.testimonial-quote
+{
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+.testimonial-quote:before, .testimonial-quote:after
+{
+  content: '';
+}
+
