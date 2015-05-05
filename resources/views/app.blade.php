@@ -13,7 +13,7 @@
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
     <!-- Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400italic,700,400&subset=latin-ext' rel='stylesheet' type='text/css'>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,6 +23,7 @@
     <![endif]-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="js/vendor/all.js"></script>
     <script src="js/app.js"></script>
 </head>
 <body data-ng-app="thesaurus">

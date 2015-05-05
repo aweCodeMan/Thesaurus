@@ -5,17 +5,21 @@
   border-radius : 0;
   font-family: $font-sans-serif;
   letter-spacing: 1px;
-  text-transform: uppercase;
-
 
   .navbar-brand
   {
     color: $color-dark-white;
+    text-transform: uppercase;
   }
 
   .navbar-brand:hover, .navbar-brand:focus, .navbar-brand:active
   {
     color: $color-light-teal;
+  }
+
+  .form-control
+  {
+    border-radius: 0;
   }
 }
 
