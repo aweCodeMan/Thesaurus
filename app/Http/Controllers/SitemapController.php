@@ -9,197 +9,66 @@ use Betoo\Thesaurus\Word;
 use Betoo\Thesaurus\WordRelationship;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
-class ThesaurusController extends Controller
+class SitemapController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
-     *
-     * @param Request $request
+     * Generate sitemapIndex.
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index(App $app)
     {
-        if ($request->ajax() && $request->get('query'))
-        {
-            return response()->json(Word::where('word', 'LIKE', $request->get('query') . '%')
-                                        ->orderBy('word', 'asc')
-                                        ->take(25)
-                                        ->get());
-        }
+        // create sitemap
+        $sitemap = $app::make("sitemap");
 
-        $data = array();
-        $data['synonymCount'] = DB::table('word_relationships')
-                                  ->where('relationship_type', '=', WORD::TYPE_SYNONYM)
-                                  ->where('deleted_at', '=', null)
-                                  ->count() / 2;
+        // set cache
+        $sitemap->setCache('laravel.sitemap-index', 20160);
 
-        $data['antonymCount'] = DB::table('word_relationships')
-                                  ->where('relationship_type', '=', WORD::TYPE_ANTONYM)
-                                  ->where('deleted_at', '=', null)
-                                  ->count() / 2;
+        // add sitemaps (loc, lastmod (optional))
+        $sitemap->addSitemap(URL::to('sitemap/1'));
+        $sitemap->addSitemap(URL::to('sitemap/2'));
+        $sitemap->addSitemap(URL::to('sitemap/3'));
 
-        $data['lastSynonyms'] = WordRelationship::where('relationship_type', '=', Word::TYPE_SYNONYM)
-                                                ->where('deleted_at', '=', null)
-                                                ->orderBy('updated_at', 'desc')
-                                                ->with('word')
-                                                ->with('linkedWord')
-                                                ->take(20)
-                                                ->get();
-
-        $data['lastAntonyms'] = WordRelationship::where('relationship_type', '=', Word::TYPE_ANTONYM)
-                                                ->where('deleted_at', '=', null)
-                                                ->orderBy('updated_at', 'desc')
-                                                ->with('word')
-                                                ->with('linkedWord')
-                                                ->take(20)
-                                                ->get();
-
-        return view('thesaurus.home')->with('data', $data);
+        // show sitemap
+        return $sitemap->render('sitemapindex');
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int $word
+     * Generate sitemap.
      *
      * @return Response
      */
-    public function show($word)
+    public function show(App $app, $id)
     {
-        $words = Word::whereWord($word)->get();
+        $sitemap = $app::make("sitemap");
+        $sitemap->setCache('laravel.sitemap' .$id, 20160);
 
-        return view('thesaurus.show')->with('words', $words)->with('query', $word);
-    }
 
-    /**
-     * Store relationship between words.
-     *
-     * @param StoreRelationshipRequest $request
-     *
-     * @return Response
-     * @internal param int $word
-     *
-     */
-    public function storeRelationship(StoreRelationshipRequest $request)
-    {
-        if (!$this->hasStoredRelationship($request->get('wordId'), $request->get('linkedWordId'), $request->get('type')))
+        if (!$sitemap->isCached())
         {
-            $success = $this->storeRelationshipInDatabase($request->get('wordId'), $request->get('linkedWordId'), $request->get('type'));
-        }
-        else
-        {
-            $success = $this->updateRelationshipInDatabase($request->get('wordId'), $request->get('linkedWordId'), $request->get('type'));
+            if ($id == 1)
+            {
+                $sitemap->add(URL::to('/'), '2015-05-06T20:10:00+02:00', '1.0', 'daily');
+                $sitemap->add(URL::to('/pomoc'), '2015-05-06T10:30:00+02:00', '0.9', 'monthly');
+            }
+
+            $words = Word::all();
+
+            $words = $words->chunk(count($words) / 3);
+
+            foreach ($words[$id - 1] as $word)
+            {
+                $sitemap->add(route('show', $word->word), Carbon::now()->subHour(3), '0.7', 'daily');
+            }
+
         }
 
-        if ($success)
-        {
-            return response()->json(array('status' => 'success'));
-        }
+        return $sitemap->render('xml');
 
-        return response()->json(array('error' => 'Could not save into database'), 500);
     }
-
-    /**
-     * Delete relationship between words.
-     *
-     * @param DeleteRelationshipRequest $request
-     *
-     * @return Response
-     * @internal param int $word
-     *
-     */
-    public function deleteRelationship(DeleteRelationshipRequest $request)
-    {
-        if ($this->hasStoredRelationship($request->get('wordId'), $request->get('linkedWordId'), $request->get('type')))
-        {
-            $success = $this->deleteRelationshipInDatabase($request->get('wordId'), $request->get('linkedWordId'), $request->get('type'));
-        }
-
-        if (!isset($success) || $success)
-        {
-            return response()->json(array('status' => 'success'));
-        }
-
-        return response()->json(array('error' => 'Could not delete from database'), 500);
-    }
-
-    /**
-     * Show FAQ page.
-     *
-     * @return Response     *
-     */
-    public function faq()
-    {
-        return view('thesaurus.faq');
-    }
-
-    private function hasStoredRelationship($wordId, $linkedWordId, $type)
-    {
-        return DB::table('word_relationships')
-                 ->where(function ($query) use ($wordId, $linkedWordId)
-                 {
-                     $query->where('wordId', '=', $wordId)
-                           ->where('linkedWordId', '=', $linkedWordId);
-                 })
-                 ->orWhere(function ($query) use ($wordId, $linkedWordId)
-                 {
-                     $query->where('wordId', '=', $linkedWordId)
-                           ->where('linkedWordId', '=', $wordId);
-                 })
-                 ->where('relationship_type', '=', $type)
-                 ->count() > 0;
-    }
-
-    private function storeRelationshipInDatabase($wordId, $linkedWordId, $type)
-    {
-        return Db::table('word_relationships')->insert(array(
-            array('wordId' => $wordId, 'linkedWordId' => $linkedWordId, 'relationship_type' => $type, 'created_at' => Carbon::now()
-                                                                                                                            ->toDateTimeString(), 'updated_at' => Carbon::now()
-                                                                                                                                                                        ->toDateTimeString()),
-            array('wordId' => $linkedWordId, 'linkedWordId' => $wordId, 'relationship_type' => $type, 'created_at' => Carbon::now()
-                                                                                                                            ->toDateTimeString(), 'updated_at' => Carbon::now()
-                                                                                                                                                                        ->toDateTimeString()),
-        ));
-    }
-
-    private function deleteRelationshipInDatabase($wordId, $linkedWordId, $type)
-    {
-        $first = DB::table('word_relationships')
-                   ->where('wordId', '=', $wordId)
-                   ->where('linkedWordId', '=', $linkedWordId)
-                   ->where('relationship_type', '=', $type)
-                   ->update(['deleted_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()
-                                                                                                      ->toDateTimeString()]);
-
-        $second = DB::table('word_relationships')
-                    ->where('wordId', '=', $linkedWordId)
-                    ->where('linkedWordId', '=', $wordId)
-                    ->where('relationship_type', '=', $type)
-                    ->update(['deleted_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()
-                                                                                                       ->toDateTimeString()]);
-
-        return ($first && $second) == true;
-    }
-
-    private function updateRelationshipInDatabase($wordId, $linkedWordId, $type)
-    {
-        $first = DB::table('word_relationships')
-                   ->where('wordId', '=', $wordId)
-                   ->where('linkedWordId', '=', $linkedWordId)
-                   ->where('relationship_type', '=', $type)
-                   ->update(['deleted_at' => null, 'updated_at' => Carbon::now()->toDateTimeString()]);
-
-        $second = DB::table('word_relationships')
-                    ->where('wordId', '=', $linkedWordId)
-                    ->where('linkedWordId', '=', $wordId)
-                    ->where('relationship_type', '=', $type)
-                    ->update(['deleted_at' => null, 'updated_at' => Carbon::now()->toDateTimeString()]);
-
-        return ($first && $second) == true;
-    }
-
 }

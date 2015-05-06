@@ -39,7 +39,7 @@ return [
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => 'CET',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
 	|
 	*/
 
-	'locale' => 'en',
+	'locale' => 'sl',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -144,6 +144,11 @@ return [
 		'Betoo\Thesaurus\Providers\ConfigServiceProvider',
 		'Betoo\Thesaurus\Providers\EventServiceProvider',
 		'Betoo\Thesaurus\Providers\RouteServiceProvider',
+
+        /*
+         * Vendor Service Providers...
+         */
+        'Roumen\Sitemap\SitemapServiceProvider',
 
 	],
 
