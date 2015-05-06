@@ -5057,6 +5057,16 @@ html, body {
   top: -25px;
   font-size: 1em; }
 
+.add-info {
+  text-align: right;
+  margin-top: 10px; }
+
+.linked-refresh {
+  position: absolute;
+  right: 10px;
+  top: -33px;
+  font-size: 1.5em; }
+
 .definitions-list {
   list-style: none;
   margin: 30px 0; }
@@ -5106,6 +5116,34 @@ hr {
   .linked-words-list li {
     margin: 10px 0;
     font-size: 1.15em; }
+
+.btn {
+  border-radius: 1px;
+  padding: 8px 16px; }
+
+.add-button {
+  margin-top: 20px; }
+
+.add-form {
+  margin-top: 38px; }
+  .add-form > .form-control {
+    height: 45px;
+    font-size: 1.2em;
+    border-radius: 1px; }
+
+.model-content {
+  border-radius: 1px; }
+
+.model-header {
+  padding: 25px 15px; }
+
+.modal-body {
+  padding: 20px 15px; }
+  .modal-body .form-control {
+    margin-top: 30px; }
+
+.delete-text {
+  font-size: 1.1em; }
 
 
 /*# sourceMappingURL=app.css.map */

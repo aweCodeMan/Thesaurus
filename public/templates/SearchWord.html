@@ -1,0 +1,12 @@
+<input ng-disabled="disable" type="text" ng-model="selectedWord"
+       placeholder="{{ placeholder ? placeholder : 'Iščite besedo...' }}" typeahead-on-select="selectModel($model)"
+       typeahead-template-url="/templates/SearchWordTypeahead.html"
+       typeahead="word as word.word for word in getWords($viewValue) | filter:$viewValue | limitTo:5"
+       typeahead-loading="loadingWords"
+       class="form-control">
+
+<div style="position: relative;">
+    <i ng-show="loadingWords" class="search-refresh glyphicon spin glyphicon-refresh"></i>
+</div>
+
+

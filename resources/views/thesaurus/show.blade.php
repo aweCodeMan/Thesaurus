@@ -30,12 +30,11 @@
                         @include('thesaurus.partials.definitions', array('definitions' => $word->definitions))
 
                         <div class="row">
-                            <div class="col-xs-6">
+                            <div class="col-sm-6">
                                 <h4>Sopomenke</h4>
 
                                 @if(count($word->synonyms) == 0)
-                                    <p class="empty-data"><b><span class="glyphicon glyphicon-remove"></span>Še ni
-                                                                                                          sopomenk.</b></p>
+                                    <p class="empty-data"><b><span class="glyphicon glyphicon-remove"></span>Še ni sopomenk.</b></p>
                                 @else
                                     <ul class="linked-words-list">
                                         @foreach($word->synonyms as $synonym)
@@ -49,12 +48,15 @@
                                 <add-linked-word url-autocomplete="{{ route('home') }}" word="{{ $word->toJson() }}" url="{{ route('store.relationship') }}" type="{{ \Betoo\Thesaurus\Word::TYPE_SYNONYM }}"></add-linked-word>
 
                             </div>
-                            <div class="col-xs-6">
-                                <h5>Protipomenke</h5>
+                            <div class="col-sm-6">
+
+                                <!-- Styling on mobile devices -->
+                                <div class="visible-xs section"></div>
+
+                                <h4>Protipomenke</h4>
 
                                 @if(count($word->antonyms) == 0)
-                                    <p class="empty-data"><b><span class="glyphicon glyphicon-remove"></span>Še ni
-                                                                                                          protipomenk.</b></p>
+                                    <p class="empty-data"><b><span class="glyphicon glyphicon-remove"></span>Še ni protipomenk.</b></p>
                                 @else
                                     <ul class="linked-words-list">
                                         @foreach($word->antonyms as $antonym)

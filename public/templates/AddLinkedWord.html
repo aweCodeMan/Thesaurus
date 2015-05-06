@@ -1,0 +1,22 @@
+<button ng-if="!showForm" class="btn btn-primary add-button" ng-click="toggleForm()">
+    <span class="glyphicon glyphicon-plus"></span>
+    Dodaj
+</button>
+
+<div ng-if="showForm" class="add-form">
+    <input ng-disabled="disable" type="text" ng-model="selectedWord"
+           placeholder="Vnesite {{ type == 1 ? 'sopomenko...' : 'protipomenko...' }}"
+           typeahead-on-select="sendLinkedWord($model)"
+           typeahead-template-url="/templates/SearchWordTypeahead.html"
+           typeahead="word as word.word for word in getWords($viewValue) | filter:$viewValue | limitTo:5"
+           typeahead-loading="loadingWords"
+           class="form-control">
+
+    <div style="position: relative;">
+        <i ng-show="loadingWords || loading" class="linked-refresh glyphicon spin glyphicon-refresh"></i>
+    </div>
+
+    <p class="add-info text-info"><i>Vnesite besedo,</br>ki jo želite dodati kot {{ type == 1 ? 'sopomenko' : 'protipomenko' }}</i></p>
+
+    <p ng-if="error" class="text-danger">{{ error }}</p>
+</div>

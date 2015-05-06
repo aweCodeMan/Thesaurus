@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h3 class="modal-title">Ali res želite odstraniti {{ type == 1 ? 'sopomenko' : 'protipomenko'}}?</h3>
+</div>
+<div class="modal-body">
+    <p class="delete-text">Vpišite besedo <b class="text-danger">{{ linkedWord.word.toUpperCase() }}</b> v spodnje polje, če jo želite odstraniti kot {{ type == 1 ? 'sopomenko' : 'protipomenko'}} besedi {{ word.word }}.</p>
+
+    <div class="form-group">
+        <input placeholder="Vpišite {{ linkedWord.word.toUpperCase() }}" ng-disabled="disabled" class="form-control" type="text" ng-model="confirm"/>
+    </div>
+
+    <p class="text-danger" ng-if="error">{{ error }}</p>
+</div>
+<div class="modal-footer">
+    <span ng-if="disabled" style="margin: 0 10px;" class="glyphicon glyphicon-refresh spin"></span>
+    <button class="btn btn-default" ng-disabled="disabled" ng-click="cancel()">Prekliči</button>
+    <button class="btn btn-danger" ng-disabled="disabled || confirm.toLowerCase() != linkedWord.word.toLowerCase()" ng-click="ok()">Odstrani</button>
+</div>
