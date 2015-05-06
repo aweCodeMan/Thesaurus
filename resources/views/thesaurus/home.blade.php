@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('title')
-   Vse slovenske sopomenke in protipomenke
+    Vse slovenske sopomenke in protipomenke
 @endsection
 
 @section('content')
@@ -35,37 +35,32 @@
         </div>
     </div>
 
-    <div class="container section">
+    <div class="container ">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-6 section">
                 @if(count($data['lastSynonyms']) > 0)
-                <h2>Zadnje sopomenke</h2>
+                    <h2>Zadnje sopomenke</h2>
 
                     <ul class="linked-words-list">
-
-                            @foreach($data['lastSynonyms'] as $index => $pair)
-                                @if($index % 2)
-                                <li><a href="{{ route('show', $pair->word->word) }}">{{ $pair->word->word }}</a> <span class="text-muted">-></span> <a href="{{ route('show', $pair->linkedWord->word) }}">{{ $pair->linkedWord->word }}</a> <span class="text-muted">({{ $pair->timeDifference }})</span></li>
-                                @endif
-
-                                @endforeach
-
+                        @foreach($data['lastSynonyms'] as $index => $pair)
+                            @if($index % 2)
+                                @include('thesaurus.partials.wordPair', array('pair' => $pair))
+                            @endif
+                        @endforeach
                     </ul>
                 @endif
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-sm-6 section">
                 @if(count($data['lastAntonyms']) > 0)
                     <h2>Zadnje protipomenke</h2>
 
                     <ul class="linked-words-list">
-
                         @foreach($data['lastAntonyms'] as $index => $pair)
                             @if($index % 2)
-                            <li><a href="{{ route('show', $pair->word->word) }}">{{ $pair->word->word }}</a> <span class="text-muted">-></span> <a href="{{ route('show', $pair->linkedWord->word) }}">{{ $pair->linkedWord->word }}</a> <span class="text-muted">({{ $pair->timeDifference }})</span></li>
+                                @include('thesaurus.partials.wordPair', array('pair' => $pair))
                             @endif
-                                @endforeach
-
+                        @endforeach
                     </ul>
                 @endif
             </div>
@@ -77,7 +72,7 @@
             <div class="col-xs-12">
                 <h4>Statistika</h4>
 
-                <ul>
+                <ul style="list-style: none">
                     <li><span class="text-muted">Število besed v bazi: </span><b>93275</b></li>
                     <li><span class="text-muted">Število vseh sopomenk: </span><b>{{ $data['synonymCount'] }}</b></li>
                     <li><span class="text-muted">Število vseh protipomenk: </span><b>{{ $data['antonymCount'] }}</b>

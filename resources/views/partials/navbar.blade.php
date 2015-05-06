@@ -14,9 +14,8 @@
         <div class="collapse navbar-collapse" id="betoo-navbar-collapse">
             <form class="navbar-form navbar-right" role="search">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Poiščite besedo...">
+                    <search-word url="{{ route('home') }}"></search-word>
                 </div>
-                <button type="submit" class="btn btn-default">Išči</button>
             </form>
         </div>
     </div>

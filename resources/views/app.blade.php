@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     @yield('meta')
-    <title>@yield('title') | Betoo tezaver</title>
 
-
+    <title>@yield('title') | Tezaver Betoo</title>
 
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
@@ -23,16 +22,19 @@
     <![endif]-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-    <script src="js/vendor/all.js"></script>
-    <script src="js/app.js"></script>
+    <script src="/js/vendor/all.js"></script>
+    <script src="/js/app.js"></script>
 </head>
 <body data-ng-app="thesaurus">
+
 <div class="wrapper">
 
-@include('partials.navbar')
+    @include('partials.navbar')
 
-@yield('content')
-<div class="push"></div>
+    @yield('content')
+
+    <!-- Used for sticky footer -->
+    <div class="push"></div>
 </div>
 @include('partials.footer')
 
