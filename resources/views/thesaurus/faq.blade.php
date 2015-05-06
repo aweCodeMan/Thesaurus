@@ -4,6 +4,16 @@
     Pomoč
 @endsection
 
+@section('meta')
+    <meta name="description" content="Vsak uporabnik tezavra včasih potrebuje pomoč. Naša pomoč vam še odgovori na smisel življenja.">
+    <meta name="keywords" content="tezaver, pomoč">
+    <meta name="twitter:card" content="summary" />
+
+    <meta property="og:title" content="Pomoč | Tezaver" />
+    <meta property="og:description" content="Vsak uporabnik tezavra včasih potrebuje pomoč. Naša pomoč vam še odgovori na smisel življenja." />
+    <meta property="og:image" content="/images/favicon.png" />
+@endsection
+
 @section('content')
     <div class="background-dark">
         <div class="container">
@@ -53,7 +63,7 @@
                 <div class="col-sm-6 section">
                     <h2>Kaj je smisel življenja?</h2>
 
-                    <p class="help-text">42</p>
+                    <p class="help-text">Ležanje na plaži. Čivava. Roka.</p>
                 </div>
 
                 <div class="col-sm-6 section">

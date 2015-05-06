@@ -17,6 +17,8 @@ h1, h2, h3, h4, h5, h6
 html
 {
   font-family : $font-sans-serif;
+  overflow-y  : scroll;
+  overflow-x  : hidden;
 }
 
 .tagline
@@ -71,8 +73,8 @@ html, body
 
 .add-info
 {
-  text-align: right;
-  margin-top: 10px;
+  text-align : right;
+  margin-top : 10px;
 }
 
 .linked-refresh
@@ -82,7 +84,6 @@ html, body
   top       : -33px;
   font-size : 1.5em;
 }
-
 
 .definitions-list
 {
@@ -163,61 +164,61 @@ hr
 
   li
   {
-    margin : 10px 0;
-    font-size: 1.15em;
+    margin    : 10px 0;
+    font-size : 1.15em;
   }
 }
 
 .btn
 {
-  border-radius: 1px;
-  padding: 8px 16px;
+  border-radius : 1px;
+  padding       : 8px 16px;
 }
 
 .add-button
 {
-  margin-top: 20px;
+  margin-top : 20px;
 }
 
 .add-form
 {
-  margin-top: 38px;
+  margin-top : 38px;
 
-  >.form-control
+  > .form-control
   {
-    height: 45px;
-    font-size: 1.2em;
-    border-radius: 1px;
+    height        : 45px;
+    font-size     : 1.2em;
+    border-radius : 1px;
   }
 }
 
 .model-content
 {
-  border-radius: 1px;
+  border-radius : 1px;
 }
 
 .model-header
 {
-  padding: 25px 15px;
+  padding : 25px 15px;
 }
 
 .modal-body
 {
-  padding: 20px 15px;
+  padding : 20px 15px;
 
   .form-control
   {
-    margin-top: 30px;
+    margin-top : 30px;
   }
 }
 
 .delete-text
 {
-  font-size: 1.1em;
+  font-size : 1.1em;
 }
 
 .help-text
 {
-  margin-top: 40px;
-  font-size: 1.2em;
+  margin-top : 40px;
+  font-size  : 1.2em;
 }
