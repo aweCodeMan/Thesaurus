@@ -61,7 +61,7 @@
                                     <ul class="linked-words-list">
                                         @foreach($word->antonyms as $antonym)
                                             <li><a href="{{ route('show', $antonym->word) }}">{{ $antonym->word }}</a>
-                                                <remove-linked-word linked-word="{{ $antonym->toJson() }}" word="{{ $word->toJson() }}" url="{{ route('delete.relationship') }}" type="{{ \Betoo\Thesaurus\Word::TYPE_SYNONYM }}"></remove-linked-word>
+                                                <remove-linked-word linked-word="{{ $antonym->toJson() }}" word="{{ $word->toJson() }}" url="{{ route('delete.relationship') }}" type="{{ \Betoo\Thesaurus\Word::TYPE_ANTONYM }}"></remove-linked-word>
                                             </li>
                                         @endforeach
                                     </ul>
