@@ -127,6 +127,16 @@ class ThesaurusController extends Controller
         return response()->json(array('error' => 'Could not delete from database'), 500);
     }
 
+    /**
+     * Show FAQ page.
+     *
+     * @return Response     *
+     */
+    public function faq()
+    {
+        return view('thesaurus.faq');
+    }
+
     private function hasStoredRelationship($wordId, $linkedWordId, $type)
     {
         return DB::table('word_relationships')

@@ -5,7 +5,7 @@
 
                 <div class="footer-contacts">
 
-                    <p class="footer-contacts-company">Želite izboljšati vaše spletno poslovanje?</p>
+                    <p class="footer-contacts-company">Ste našli napako?</p>
 
                     <p>Kontaktirajte nas na <a href="mailto:info@betoo.so">info@betoo.si</a></p>
 
@@ -13,7 +13,7 @@
 
             </div>
             <div class="col-sm-6">
-
+                <a href="{{ route('faq') }}">Pomoč</a>
             </div>
         </div>
     </div>
