@@ -12,5 +12,6 @@
 */
 
 Route::get('/', array('uses' => 'ThesaurusController@index', 'as' => 'home'));
-Route::get('/{word}', array('uses' => 'ThesaurusController@show', 'as' => 'show'));
-
+Route::get('/beseda/{word}', array('uses' => 'ThesaurusController@show', 'as' => 'show'));
+Route::post('/word-relationships', array('uses' => 'ThesaurusController@storeRelationship', 'as' => 'store.relationship'));
+Route::delete('/word-relationships', array('uses' => 'ThesaurusController@deleteRelationship', 'as' => 'delete.relationship'));
