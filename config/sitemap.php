@@ -1,9 +1,19 @@
 <?php
 
-/* Simple configuration file for Laravel Sitemap package */
-return [
-    'use_cache'      => true,
-    'cache_key'      => 'Laravel.Sitemap.' . config('app.url'),
-    'cache_duration' => 3600,
-    'escaping'       => true,
-];
+return array(
+
+	/*
+	|--------------------------------------------------------------------------
+	| Caching
+	|--------------------------------------------------------------------------
+	|
+	| Here you may enable or disable caching of sitemaps for each time they
+	| are generated. You can also specify the length of time (in minutes)
+	| they will remain cached.
+	|
+	*/
+
+	'cache_enabled' => true,
+	
+	'cache_length' => 120
+);

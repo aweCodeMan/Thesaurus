@@ -1,17 +1,12 @@
 <?php namespace Betoo\Thesaurus\Http\Controllers;
 
 use Betoo\Thesaurus\Http\Requests;
-use Betoo\Thesaurus\Http\Controllers\Controller;
-
-use Betoo\Thesaurus\Http\Requests\DeleteRelationshipRequest;
-use Betoo\Thesaurus\Http\Requests\StoreRelationshipRequest;
 use Betoo\Thesaurus\Word;
-use Betoo\Thesaurus\WordRelationship;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\URL;
+use Watson\Sitemap\Facades\Sitemap;
 
 class SitemapController extends Controller
 {
@@ -23,19 +18,18 @@ class SitemapController extends Controller
      */
     public function index(App $app)
     {
-        // create sitemap
-        $sitemap = $app::make("sitemap");
+        Sitemap::addSitemap(URL::to('/sitemap/1'));
+        Sitemap::addSitemap(URL::to('/sitemap/2'));
+        Sitemap::addSitemap(URL::to('/sitemap/3'));
+        Sitemap::addSitemap(URL::to('/sitemap/4'));
+        Sitemap::addSitemap(URL::to('/sitemap/5'));
+        Sitemap::addSitemap(URL::to('/sitemap/6'));
+        Sitemap::addSitemap(URL::to('/sitemap/7'));
+        Sitemap::addSitemap(URL::to('/sitemap/8'));
+        Sitemap::addSitemap(URL::to('/sitemap/9'));
+        Sitemap::addSitemap(URL::to('/sitemap/10'));
 
-        // set cache
-        $sitemap->setCache('laravel.sitemap-index', 20160);
-
-        // add sitemaps (loc, lastmod (optional))
-        $sitemap->addSitemap(URL::to('sitemap/1'));
-        $sitemap->addSitemap(URL::to('sitemap/2'));
-        $sitemap->addSitemap(URL::to('sitemap/3'));
-
-        // show sitemap
-        return $sitemap->render('sitemapindex');
+        return Sitemap::renderSitemapIndex();
     }
 
     /**
@@ -43,32 +37,22 @@ class SitemapController extends Controller
      *
      * @return Response
      */
-    public function show(App $app, $id)
+    public function show($id)
     {
-        $sitemap = $app::make("sitemap");
-        $sitemap->setCache('laravel.sitemap' .$id, 20160);
-
-
-        if (!$sitemap->isCached())
+        if ($id == 1)
         {
-            if ($id == 1)
-            {
-                $sitemap->add(URL::to('/'), '2015-05-06T20:10:00+02:00', '1.0', 'daily');
-                $sitemap->add(URL::to('/pomoc'), '2015-05-06T10:30:00+02:00', '0.9', 'monthly');
-            }
-
-            $words = Word::all();
-
-            $words = $words->chunk(count($words) / 3);
-
-            foreach ($words[$id - 1] as $word)
-            {
-                $sitemap->add(route('show', $word->word), Carbon::now()->subHour(3), '0.7', 'daily');
-            }
-
+            Sitemap::addTag(URL::to('/'), Carbon::now('CET')->subHour(2)->toDateTimeString(), 'daily', '1.0');
+            Sitemap::addTag(URL::to('/pomoc'), '2015-05-12T20:10:00+02:00', 'monthly', '0.8');
         }
 
-        return $sitemap->render('xml');
+        $chunk = 92954 / 10;
+        $words = Word::take($chunk)->skip(($id - 1) * $chunk)->get();
 
+        foreach ($words as $word)
+        {
+            Sitemap::addTag(route('show', $word->word), Carbon::now('CET')->subHour(4)->toDateTimeString(), 'daily', '0.8');
+        }
+
+        return Sitemap::renderSitemap();
     }
 }

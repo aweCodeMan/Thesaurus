@@ -83,7 +83,7 @@
                 <h4>Statistika</h4>
 
                 <ul style="list-style: none">
-                    <li><span class="text-muted">Število besed v bazi: </span><b>93275</b></li>
+                    <li><span class="text-muted">Število besed v bazi: </span><b>92954</b></li>
                     <li><span class="text-muted">Število vseh sopomenk: </span><b>{{ $data['synonymCount'] }}</b></li>
                     <li><span class="text-muted">Število vseh protipomenk: </span><b>{{ $data['antonymCount'] }}</b>
                     </li>
