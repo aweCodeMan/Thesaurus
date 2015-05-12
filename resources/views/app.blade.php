@@ -12,10 +12,10 @@
 
     <title>@yield('title') | Tezaver Betoo</title>
 
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet" defer="true">
+    <link href="{{ asset('/css/app.css') }}" rel="stylesheet" async="true">
 
     <!-- Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400italic,700,400&subset=latin-ext' rel='stylesheet' type='text/css' defer="true">
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400italic,700,400&subset=latin-ext' rel='stylesheet' type='text/css' async="true">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
