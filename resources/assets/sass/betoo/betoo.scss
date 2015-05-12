@@ -21,6 +21,12 @@ html
   overflow-x  : hidden;
 }
 
+.dropdown-menu
+{
+  max-height: 250px;
+  overflow: auto;
+}
+
 body
 {
   font-family : $font-sans-serif;
