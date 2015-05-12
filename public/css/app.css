@@ -997,7 +997,7 @@ html {
   -webkit-tap-highlight-color: transparent; }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif !important;
   font-size: 14px;
   line-height: 1.42857;
   color: #333333;
@@ -4280,7 +4280,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif !important;
   font-size: 12px;
   font-weight: normal;
   line-height: 1.4;
@@ -4375,7 +4375,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif !important;
   font-size: 14px;
   font-weight: normal;
   line-height: 1.42857;
@@ -5026,6 +5026,11 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto Slab', serif !important; }
 
 html {
+  font-family: 'Open Sans', sans-serif !important;
+  overflow-y: scroll;
+  overflow-x: hidden; }
+
+body {
   font-family: 'Open Sans', sans-serif !important; }
 
 .tagline {
