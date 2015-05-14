@@ -19,6 +19,7 @@ elixir(function(mix) {
     mix.task('moveTemplates', 'resources/assets/js/**/*.html');
     mix.scripts(['angular-bootstrap/ui-bootstrap-tpls.min.js'], 'public/js/vendor/all.js', 'bower_components');
     mix.scripts(['angular/app.js', 'angular/**/*.js'], 'public/js/app.js', 'resources/assets/js');
+    mix.version(['/css/app.css', '/js/app.js']);
 });
 
 gulp.task('moveTemplates', function()
