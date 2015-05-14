@@ -3,7 +3,8 @@
        typeahead-template-url="/templates/SearchWordTypeahead.html"
        typeahead="word as word.word for word in getWords($viewValue) | filter:$viewValue | limitTo:5"
        typeahead-loading="loadingWords"
-       class="form-control">
+       class="form-control"
+       typeahead-wait-ms="250">
 
 <div style="position: relative;">
     <i ng-show="loadingWords" class="search-refresh glyphicon spin glyphicon-refresh"></i>
