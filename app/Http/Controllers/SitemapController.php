@@ -43,6 +43,8 @@ class SitemapController extends Controller
         {
             Sitemap::addTag(URL::to('/'), Carbon::now('CET')->subHour(2)->toDateTimeString(), 'daily', '1.0');
             Sitemap::addTag(URL::to('/pomoc'), '2015-05-12T20:10:00+02:00', 'monthly', '0.8');
+            Sitemap::addTag(URL::to('/sopomenke'), '2015-05-18T20:10:00+02:00', 'daily', '0.9');
+            Sitemap::addTag(URL::to('/protipomenke'), '2015-05-18T20:10:00+02:00', 'daily', '0.9');
         }
 
         $chunk = 92954 / 10;

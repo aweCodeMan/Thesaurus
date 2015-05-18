@@ -58,6 +58,10 @@
                             @endif
                         @endforeach
                     </ul>
+
+
+                    <a class="btn btn-default" href="{{ route('synonyms') }}">Vse sopomenke</a>
+
                 @endif
             </div>
 
@@ -72,6 +76,9 @@
                             @endif
                         @endforeach
                     </ul>
+
+                    <a class="btn btn-default" href="{{ route('antonyms') }}">Vse protipomenke</a>
+
                 @endif
             </div>
         </div>

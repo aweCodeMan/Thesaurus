@@ -137,6 +137,39 @@ class ThesaurusController extends Controller
         return view('thesaurus.faq');
     }
 
+    /**
+     * Show all synonyms.
+     *
+     * @return Response     *
+     */
+    public function synonyms()
+    {
+        $synonyms = WordRelationship::where('relationship_type', '=', Word::TYPE_SYNONYM)
+                                    ->where('deleted_at', '=', null)
+                                    ->orderBy('wordId', 'asc')
+                                    ->with('word')
+                                    ->with('linkedWord')
+                                    ->paginate(60);
+
+        return view('thesaurus.synonyms')->with('synonyms', $synonyms);
+    }
+
+    /**
+     * Show all antonyms.
+     *
+     * @return Response     *
+     */
+    public function antonyms()
+    {
+        $antonyms = WordRelationship::where('relationship_type', '=', Word::TYPE_ANTONYM)
+                                    ->where('deleted_at', '=', null)
+                                    ->orderBy('wordId', 'asc')
+                                    ->with('word')
+                                    ->with('linkedWord')
+                                    ->paginate(60);
+
+        return view('thesaurus.antonyms')->with('antonyms', $antonyms);
+    }
     private function hasStoredRelationship($wordId, $linkedWordId, $type)
     {
         return DB::table('word_relationships')
