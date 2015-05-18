@@ -10,7 +10,7 @@
     <meta name="twitter:card" content="summary" />
 
     <meta property="og:title" content="Pomoč | Tezaver" />
-    <meta property="og:description" content="Vsak uporabnik tezavra včasih potrebuje pomoč. Naša pomoč vam še odgovori na smisel življenja." />
+    <meta property="og:description" content="Vsak uporabnik tezavra včasih potrebuje pomoč. Naša pomoč še odgovori na smisel življenja." />
     <meta property="og:image" content="/images/favicon.png" />
 @endsection
 

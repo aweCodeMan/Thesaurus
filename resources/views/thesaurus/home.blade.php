@@ -5,12 +5,12 @@
 @endsection
 
 @section('meta')
-    <meta name="description" content="Iščite sopomenke in protipomenke vseh slovenskih besed. Naj vam beseda nikoli več ne obstane na jeziku.">
+    <meta name="description" content="Iščite sopomenke in protipomenke vseh slovenskih besed. Imamo že več kot {{ $data['synonymCount'] + $data['antonymCount'] }} povezanih besed. Naj vam beseda nikoli več ne obstane na jeziku.">
     <meta name="keywords" content="tezaver, sopomenke, protipomenke, slovar, slovenščina, besede">
     <meta name="twitter:card" content="summary"/>
 
     <meta property="og:title" content="Vse slovenske sopomenke in protipomenke | Tezaver"/>
-    <meta property="og:description" content="Iščite sopomenke in protipomenke vseh slovenskih besed. Naj vam beseda nikoli več ne obstane na jeziku."/>
+    <meta property="og:description" content="Iščite sopomenke in protipomenke vseh slovenskih besed. Imamo že več kot {{ $data['synonymCount'] + $data['antonymCount'] }} povezanih besed. Naj vam beseda nikoli več ne obstane na jeziku."/>
     <meta property="og:image" content="/images/favicon.png"/>
 @endsection
 
