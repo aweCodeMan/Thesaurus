@@ -44,7 +44,7 @@
                                     <p class="empty-data"><b><span class="glyphicon glyphicon-remove"></span>Še ni sopomenk.</b></p>
                                 @else
                                     <ul class="linked-words-list">
-                                        @foreach($word->synonyms as $synonym)
+                                        @foreach($word->synonyms->sortBy('word') as $synonym)
                                             <li><a href="{{ route('show', $synonym->word) }}">{{ $synonym->word }}</a>
                                                 <remove-linked-word linked-word="{{ $synonym->toJson() }}" word="{{ $word->toJson() }}" url="{{ route('delete.relationship') }}" type="{{ \Betoo\Thesaurus\Word::TYPE_SYNONYM }}"></remove-linked-word>
                                             </li>
@@ -66,7 +66,7 @@
                                     <p class="empty-data"><b><span class="glyphicon glyphicon-remove"></span>Še ni protipomenk.</b></p>
                                 @else
                                     <ul class="linked-words-list">
-                                        @foreach($word->antonyms as $antonym)
+                                        @foreach($word->antonyms->sortBy('word') as $antonym)
                                             <li><a href="{{ route('show', $antonym->word) }}">{{ $antonym->word }}</a>
                                                 <remove-linked-word linked-word="{{ $antonym->toJson() }}" word="{{ $word->toJson() }}" url="{{ route('delete.relationship') }}" type="{{ \Betoo\Thesaurus\Word::TYPE_ANTONYM }}"></remove-linked-word>
                                             </li>
