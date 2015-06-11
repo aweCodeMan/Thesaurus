@@ -7,7 +7,7 @@
 
                     <p class="footer-contacts-company">Ste našli napako?</p>
 
-                    <p>Kontaktirajte nas na <a href="mailto:info@betoo.so">info@betoo.si</a></p>
+                    <p>Kontaktirajte nas na <a href="mailto:info@betoo.si">info@betoo.si</a></p>
 
                 </div>
 
