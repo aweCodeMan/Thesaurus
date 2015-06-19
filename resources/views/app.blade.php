@@ -12,7 +12,7 @@
 
     <title>@yield('title') | Tezaver Betoo</title>
 
-    <link href="{{ elixir('/css/app.css') }}" rel="stylesheet" async="true">
+    <link href="{{ elixir('css/app.css') }}" rel="stylesheet" async="true">
 
     <!-- Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400italic,700,400&subset=latin-ext' rel='stylesheet' type='text/css' async="true">
@@ -26,7 +26,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js" defer="true"></script>
     <script src="/js/vendor/all.js" defer="true"></script>
-    <script src="{{ elixir("/js/app.js") }}" defer="true"></script>
+    <script src="{{ elixir("js/app.js") }}" defer="true"></script>
 
 
 

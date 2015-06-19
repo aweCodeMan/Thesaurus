@@ -13,7 +13,12 @@
 
             </div>
             <div class="col-sm-6">
-                <a href="{{ route('faq') }}">Pomoč</a>
+                <ul style="list-style: none">
+                    <li><a href="{{ route('faq') }}">Pomoč</a></li>
+                    <li><a href="{{ route('v1.docs') }}">API</a></li>
+                    <li><a href="https://github.com/aweCodeMan/Thesaurus">Github</a></li>
+                </ul>
+
             </div>
         </div>
     </div>

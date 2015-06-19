@@ -9,6 +9,7 @@ class Word extends Model
 
     protected $table   = 'words';
     protected $appends = array('link');
+    protected $hidden = array('hidden_at', 'pivot');
 
     public function getLinkAttribute()
     {

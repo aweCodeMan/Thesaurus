@@ -63,7 +63,7 @@
                 <div class="col-sm-6 section">
                     <h2>Kaj je smisel življenja?</h2>
 
-                    <p class="help-text">Ležanje na plaži. Čivava. Roka.</p>
+                    <p class="help-text">Ležanje na plaži s čivavo v roki.</p>
                 </div>
 
                 <div class="col-sm-6 section">
@@ -71,6 +71,21 @@
 
                     <p class="help-text">Uporabljite tezaver. Če kakšna sopomenka manjka, jo dodajte. Povejte svojim
                                          prijateljem in znancem.</br>Bodite dobri drug do drugega in vse bo v redu.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 section">
+                    <h2>Kako lahko pomagam pri razvoju?</h2>
+
+                    <p class="help-text">Ni problema. Tukaj je <a href="https://github.com/aweCodeMan/Thesaurus">Github repositorij.</a></p>
+                </div>
+
+                <div class="col-sm-6 section">
+                    <h2>Ali lahko uporabim podatke iz tezavra?</h2>
+
+                    <p class="help-text">Seveda. Podatki so javno dostopni in na voljo za brskanje, spreminjanje in uporabo. V pomoč naj ti tudi služi
+                        <a href="{{ route('v1.docs') }}">API dokumentacija.</a>
                 </div>
             </div>
         </div>

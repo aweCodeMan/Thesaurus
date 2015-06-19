@@ -7,7 +7,9 @@ class WordRelationship extends Model
 {
     protected $table   = 'word_relationships';
 
-    protected $append = ['timeDifference'];
+    protected $append = ['timeDifference', 'type'];
+
+    protected $hidden = ['id', 'wordId', 'linkedWordId', 'deleted_at'];
 
     public function getTimeDifferenceAttribute()
     {
@@ -23,6 +25,19 @@ class WordRelationship extends Model
     public function linkedWord()
     {
         return $this->hasOne('Betoo\Thesaurus\Word', 'id', 'linkedWordId');
+    }
 
+    public function getRelationshipTypeAttribute()
+    {
+        switch($this->attributes['relationship_type'])
+        {
+            case Word::TYPE_SYNONYM:
+                return 'synonym';
+
+            case Word::TYPE_ANTONYM:
+                return 'antonym';
+        }
+
+        return null;
     }
 }

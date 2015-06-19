@@ -21,3 +21,15 @@ Route::delete('/word-relationships', array('uses' => 'ThesaurusController@delete
 
 Route::get('/sitemap',  array('uses' => 'SitemapController@index'));
 Route::get('/sitemap/{id}', array('uses' => 'SitemapController@show'));
+
+Route::group(array('prefix' => '/api/v1'), function ()
+{
+    Route::get('words', array('uses' => 'APIController@index'));
+    Route::get('words/{id}', array('uses' => 'APIController@show'));
+    Route::get('synonyms', array('uses' => 'APIController@synonyms'));
+    Route::get('antonyms', array('uses' => 'APIController@antonyms'));
+    Route::post('word-relationships', array('uses' => 'APIController@storeRelationship'));
+    Route::post('word-relationships/delete', array('uses' => 'APIController@deleteRelationship'));
+
+    Route::get('docs', array('uses' => 'APIController@docs', 'as' => 'v1.docs'));
+});

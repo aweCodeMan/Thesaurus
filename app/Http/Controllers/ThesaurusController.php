@@ -130,7 +130,7 @@ class ThesaurusController extends Controller
     /**
      * Show FAQ page.
      *
-     * @return Response     *
+     * @return Response
      */
     public function faq()
     {
@@ -140,7 +140,7 @@ class ThesaurusController extends Controller
     /**
      * Show all synonyms.
      *
-     * @return Response     *
+     * @return Response
      */
     public function synonyms()
     {
@@ -157,7 +157,7 @@ class ThesaurusController extends Controller
     /**
      * Show all antonyms.
      *
-     * @return Response     *
+     * @return Response
      */
     public function antonyms()
     {
@@ -170,69 +170,4 @@ class ThesaurusController extends Controller
 
         return view('thesaurus.antonyms')->with('antonyms', $antonyms);
     }
-    private function hasStoredRelationship($wordId, $linkedWordId, $type)
-    {
-        return DB::table('word_relationships')
-                 ->where(function ($query) use ($wordId, $linkedWordId)
-                 {
-                     $query->where('wordId', '=', $wordId)
-                           ->where('linkedWordId', '=', $linkedWordId);
-                 })
-                 ->orWhere(function ($query) use ($wordId, $linkedWordId)
-                 {
-                     $query->where('wordId', '=', $linkedWordId)
-                           ->where('linkedWordId', '=', $wordId);
-                 })
-                 ->where('relationship_type', '=', $type)
-                 ->count() > 0;
-    }
-
-    private function storeRelationshipInDatabase($wordId, $linkedWordId, $type)
-    {
-        return Db::table('word_relationships')->insert(array(
-            array('wordId' => $wordId, 'linkedWordId' => $linkedWordId, 'relationship_type' => $type, 'created_at' => Carbon::now()
-                                                                                                                            ->toDateTimeString(), 'updated_at' => Carbon::now()
-                                                                                                                                                                        ->toDateTimeString()),
-            array('wordId' => $linkedWordId, 'linkedWordId' => $wordId, 'relationship_type' => $type, 'created_at' => Carbon::now()
-                                                                                                                            ->toDateTimeString(), 'updated_at' => Carbon::now()
-                                                                                                                                                                        ->toDateTimeString()),
-        ));
-    }
-
-    private function deleteRelationshipInDatabase($wordId, $linkedWordId, $type)
-    {
-        $first = DB::table('word_relationships')
-                   ->where('wordId', '=', $wordId)
-                   ->where('linkedWordId', '=', $linkedWordId)
-                   ->where('relationship_type', '=', $type)
-                   ->update(['deleted_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()
-                                                                                                      ->toDateTimeString()]);
-
-        $second = DB::table('word_relationships')
-                    ->where('wordId', '=', $linkedWordId)
-                    ->where('linkedWordId', '=', $wordId)
-                    ->where('relationship_type', '=', $type)
-                    ->update(['deleted_at' => Carbon::now()->toDateTimeString(), 'updated_at' => Carbon::now()
-                                                                                                       ->toDateTimeString()]);
-
-        return ($first && $second) == true;
-    }
-
-    private function updateRelationshipInDatabase($wordId, $linkedWordId, $type)
-    {
-        $first = DB::table('word_relationships')
-                   ->where('wordId', '=', $wordId)
-                   ->where('linkedWordId', '=', $linkedWordId)
-                   ->where('relationship_type', '=', $type)
-                   ->update(['deleted_at' => null, 'updated_at' => Carbon::now()->toDateTimeString()]);
-
-        $second = DB::table('word_relationships')
-                    ->where('wordId', '=', $linkedWordId)
-                    ->where('linkedWordId', '=', $wordId)
-                    ->where('relationship_type', '=', $type)
-                    ->update(['deleted_at' => null, 'updated_at' => Carbon::now()->toDateTimeString()]);
-
-        return ($first && $second) == true;
-    }
-
 }

@@ -25,7 +25,6 @@ class DeleteRelationshipRequest extends Request
         return [
             'wordId'       => 'required|exists:words,id|different:linkedWordId',
             'linkedWordId' => 'required|exists:words,id',
-            'confirmation' => 'required',
             'type'         => 'required|between: 1,2'
         ];
     }
