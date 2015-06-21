@@ -249,3 +249,63 @@ When deleting a relationship use `type = 1` for syonyms and `type = 2` for anton
             "The type field is required."
         ]
     }
+    
+# Group Statistics
+
+Resources for statistics about thesaurus.
+
+# /api/v1/stats
+
+## Get stats [GET] 
+
++ Response 200 (application/json)
+
+    {
+        "synonym_count": 1027,
+        "antonym_count": 67,
+        "last_synonyms": [
+            {
+                "relationship_type": "synonym",
+                "created_at": "2015-06-18 07:48:19",
+                "updated_at": "2015-06-18 07:48:19",
+                "word": {
+                    "id": 83711,
+                    "word": "veličasten",
+                    "pronunciation": "veličásten",
+                    "tags": "pridevnik, pridevniška raba: prislov, prislovna raba",
+                    "definitions": "ki vzbuja pozornost, občudovanje zaradi velike razsežnosti: velikega števila: slovesnosti, zanosa: velike pomembnosti: ki se nanaša na kaj, kar zaradi določenih lastnosti vzbuja pozornost, občudovanje:",
+                    "link": "http://tezaver.dev/beseda/veli%C4%8Dasten"
+            },
+                "linked_word": {
+                    "id": 69213,
+                    "word": "sijajen",
+                    "pronunciation": "sijájen",
+                    "tags": "pridevnik, pridevniška raba: v povedni rabi",
+                    "definitions": "ki ima sijaj: ki ima zaželeno lastnost, kakovost v zelo veliki meri: glede na določene zahteve zelo uspešen, učinkovit: ki ima veliko dobrih, pozitivnih lastnosti: ki v veliki meri izpolnjuje dolžnosti ali delovne zahteve: prislov od sijajen: izraža veliko navdušenje nad čim:",
+                    "link": "http://tezaver.dev/beseda/sijajen"
+            }
+        ]
+        "last_antonyms": [
+            {
+                "relationship_type": "antonym",
+                "created_at": "2015-06-19 21:33:07",
+                "updated_at": "2015-06-19 21:33:07",
+                "word": {
+                    "id": 3,
+                    "word": "a",
+                    "pronunciation": "à",
+                    "tags": "",
+                    "definitions": "za izražanje prodajne cene, po:",
+                    "link": "http://tezaver.dev/beseda/a"
+                },
+                "linked_word": {
+                    "id": 1,
+                    "word": "a",
+                    "pronunciation": "á",
+                    "tags": "m nesklonljiv(o): nesklonljivi prilastek",
+                    "definitions": "prva črka slovenske abecede: samoglasnik, ki ga ta črka zaznamuje: prvi po vrsti:",
+                    "link": "http://tezaver.dev/beseda/a"
+                }
+            }
+        ]
+    }

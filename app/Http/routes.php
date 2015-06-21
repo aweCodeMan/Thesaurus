@@ -30,6 +30,7 @@ Route::group(array('prefix' => '/api/v1'), function ()
     Route::get('antonyms', array('uses' => 'APIController@antonyms'));
     Route::post('word-relationships', array('uses' => 'APIController@storeRelationship'));
     Route::post('word-relationships/delete', array('uses' => 'APIController@deleteRelationship'));
+    Route::get('stats', array('uses' => 'APIController@stats'));
 
     Route::get('docs', array('uses' => 'APIController@docs', 'as' => 'v1.docs'));
 });

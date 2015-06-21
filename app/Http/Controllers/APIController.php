@@ -147,4 +147,41 @@ class APIController extends Controller
     {
         return view('documentation.v1.docs');
     }
+
+    /**
+     *  Return stats about the thesaurus.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function stats()
+    {
+        $data = array();
+        $data['synonym_count'] = DB::table('word_relationships')
+                                  ->where('relationship_type', '=', WORD::TYPE_SYNONYM)
+                                  ->where('deleted_at', '=', null)
+                                  ->count() / 2;
+
+        $data['antonym_count'] = DB::table('word_relationships')
+                                  ->where('relationship_type', '=', WORD::TYPE_ANTONYM)
+                                  ->where('deleted_at', '=', null)
+                                  ->count() / 2;
+
+        $data['last_synonyms'] = WordRelationship::where('relationship_type', '=', Word::TYPE_SYNONYM)
+                                                ->where('deleted_at', '=', null)
+                                                ->orderBy('updated_at', 'desc')
+                                                ->with('word')
+                                                ->with('linkedWord')
+                                                ->take(20)
+                                                ->get();
+
+        $data['last_antonyms'] = WordRelationship::where('relationship_type', '=', Word::TYPE_ANTONYM)
+                                                ->where('deleted_at', '=', null)
+                                                ->orderBy('updated_at', 'desc')
+                                                ->with('word')
+                                                ->with('linkedWord')
+                                                ->take(20)
+                                                ->get();
+
+        return $data;
+    }
 }
