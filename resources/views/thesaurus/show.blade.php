@@ -41,13 +41,20 @@
                                 <h4>Sopomenke</h4>
 
                                 @if(count($word->synonyms) == 0)
-                                    <p class="empty-data"><b><span class="glyphicon glyphicon-remove"></span>Še ni sopomenk.</b></p>
+                                    <p class="empty-data"><b><span class="glyphicon glyphicon-remove"></span>Še ni
+                                                                                                             sopomenk.</b>
+                                    </p>
                                 @else
                                     <ul class="linked-words-list">
-                                        @foreach($word->synonyms->sortBy('word') as $synonym)
-                                            <li><a href="{{ route('show', $synonym->word) }}">{{ $synonym->word }}</a>
-                                                <remove-linked-word linked-word="{{ $synonym->toJson() }}" word="{{ $word->toJson() }}" url="{{ route('delete.relationship') }}" type="{{ \Betoo\Thesaurus\Word::TYPE_SYNONYM }}"></remove-linked-word>
-                                            </li>
+                                        @foreach($word->synonyms->sortBy('word') as $key => $synonym)
+                                            @if($key == 0 || $synonym->word != $word->synonyms->sortBy('word')[$key - 1]->word)
+
+                                                <li>
+                                                    <a href="{{ route('show', $synonym->word) }}">{{ $synonym->word }}</a>
+                                                    <remove-linked-word linked-word="{{ $synonym->toJson() }}" word="{{ $word->toJson() }}" url="{{ route('delete.relationship') }}" type="{{ \Betoo\Thesaurus\Word::TYPE_SYNONYM }}"></remove-linked-word>
+                                                </li>
+
+                                            @endif
                                         @endforeach
                                     </ul>
                                 @endif
@@ -63,13 +70,20 @@
                                 <h4>Protipomenke</h4>
 
                                 @if(count($word->antonyms) == 0)
-                                    <p class="empty-data"><b><span class="glyphicon glyphicon-remove"></span>Še ni protipomenk.</b></p>
+                                    <p class="empty-data"><b><span class="glyphicon glyphicon-remove"></span>Še ni
+                                                                                                             protipomenk.</b>
+                                    </p>
                                 @else
                                     <ul class="linked-words-list">
-                                        @foreach($word->antonyms->sortBy('word') as $antonym)
-                                            <li><a href="{{ route('show', $antonym->word) }}">{{ $antonym->word }}</a>
-                                                <remove-linked-word linked-word="{{ $antonym->toJson() }}" word="{{ $word->toJson() }}" url="{{ route('delete.relationship') }}" type="{{ \Betoo\Thesaurus\Word::TYPE_ANTONYM }}"></remove-linked-word>
-                                            </li>
+                                        @foreach($word->antonyms->sortBy('word') as $key => $antonym)
+                                            @if($key == 0 || $antonym->word != $word->antonyms->sortBy('word')[$key - 1]->word)
+
+                                                <li>
+                                                    <a href="{{ route('show', $antonym->word) }}">{{ $antonym->word }}</a>
+                                                    <remove-linked-word linked-word="{{ $antonym->toJson() }}" word="{{ $word->toJson() }}" url="{{ route('delete.relationship') }}" type="{{ \Betoo\Thesaurus\Word::TYPE_ANTONYM }}"></remove-linked-word>
+                                                </li>
+
+                                            @endif
                                         @endforeach
                                     </ul>
                                 @endif
