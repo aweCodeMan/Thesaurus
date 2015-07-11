@@ -67,6 +67,32 @@ angular.module('thesaurus')
                  };
              });
 angular.module('thesaurus')
+  .directive('removeLinkedWord', function ()
+             {
+                 return {
+                     restrict:   'E',
+                     scope:      {
+                         word:       '=',
+                         linkedWord: '=',
+                         type:       '@',
+                         url:        '@'
+                     },
+                     controller: function ($scope, DeleteWordModal)
+                     {
+                         $scope.remove = function ()
+                         {
+                             DeleteWordModal.openModal($scope.word, $scope.linkedWord, $scope.type, $scope.url).then(function (success)
+                                                                                                                     {
+                                                                                                                         window.location.reload();
+                                                                                                                     });
+                         }
+                     },
+                     template:   '<span class="glyphicon glyphicon-trash remove-linked-word" ng-click="remove()"></span>'
+                 };
+             })
+;
+
+angular.module('thesaurus')
   .factory('DeleteWordModal', function ($modal)
            {
                var modal = {
@@ -127,32 +153,6 @@ angular.module('thesaurus')
                   };
               });
 
-angular.module('thesaurus')
-  .directive('removeLinkedWord', function ()
-             {
-                 return {
-                     restrict:   'E',
-                     scope:      {
-                         word:       '=',
-                         linkedWord: '=',
-                         type:       '@',
-                         url:        '@'
-                     },
-                     controller: function ($scope, DeleteWordModal)
-                     {
-                         $scope.remove = function ()
-                         {
-                             DeleteWordModal.openModal($scope.word, $scope.linkedWord, $scope.type, $scope.url).then(function (success)
-                                                                                                                     {
-                                                                                                                         window.location.reload();
-                                                                                                                     });
-                         }
-                     },
-                     template:   '<span class="glyphicon glyphicon-trash remove-linked-word" ng-click="remove()"></span>'
-                 };
-             })
-;
-
 /**
  * @ngdoc directive
  * @name SearchWord
@@ -174,6 +174,8 @@ angular.module('thesaurus')
                      },
                      controller:  function ($scope, $http, Words)
                      {
+                         var words = [];
+
                          $scope.selectModel = function (model)
                          {
                              window.location.href = model.link;
@@ -181,7 +183,29 @@ angular.module('thesaurus')
 
                          $scope.getWords = function (word)
                          {
-                             return Words.getWords(word, $scope.url);
+                             words = [];
+                             return Words.getWords(word, $scope.url).then(function (success)
+                                                                          {
+                                                                              words = success;
+                                                                              return success;
+                                                                          }, function (error)
+                                                                          {
+                                                                              return error;
+                                                                          });
+                         };
+
+                         $scope.onEnter = function (query, event)
+                         {
+                             if (event.keyCode == 13 && !$scope.loadingWords)
+                             {
+                                 words.forEach(function (item)
+                                               {
+                                                   if (item.word.toLowerCase() == query.toLowerCase())
+                                                   {
+                                                       window.location.href = item.link;
+                                                   }
+                                               });
+                             }
                          };
                      },
                      link:        function (scope, elem, attr)
@@ -212,17 +236,15 @@ angular.module('thesaurus')
                        }
                    }).then(function (response)
                            {
-
                                if (response.data.length == 0)
                                {
-                                   response.data.push({empty: true});
+                                   response.data.push({word: '', link: 'beseda/' + word, empty: true});
                                    return response.data;
                                }
 
                                return response.data.map(function (item)
                                                         {
                                                             item.typeaheadDefinition = getFirstDefinition(item.definitions);
-
                                                             return item;
                                                         });
                            });

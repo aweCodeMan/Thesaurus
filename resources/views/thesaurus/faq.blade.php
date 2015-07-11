@@ -5,12 +5,12 @@
 @endsection
 
 @section('meta')
-    <meta name="description" content="Vsak uporabnik tezavra včasih potrebuje pomoč. Naša pomoč vam še odgovori na smisel življenja.">
-    <meta name="keywords" content="tezaver, pomoč">
+    <meta name="description" content="Vsak uporabnik portala sopomenke.si včasih potrebuje pomoč. Tu se nahajajo vsi odgovori.">
+    <meta name="keywords" content="tezaver, pomoč, sopomenke, protipomenke, vprašanja">
     <meta name="twitter:card" content="summary" />
 
-    <meta property="og:title" content="Pomoč | Tezaver" />
-    <meta property="og:description" content="Vsak uporabnik tezavra včasih potrebuje pomoč. Naša pomoč še odgovori na smisel življenja." />
+    <meta property="og:title" content="Pomoč | Sopomenke.si" />
+    <meta property="og:description" content="Vsak uporabnik portala sopomenke.si včasih potrebuje pomoč. Tu se nahajajo vsi odgovori." />
     <meta property="og:image" content="/images/favicon.png" />
 @endsection
 
@@ -28,14 +28,14 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 section">
-                <h2>Kaj je tezaver?</h2>
+                <h2>Kaj so sopomenke.si?</h2>
 
-                <p class="help-text">Tezaver je slovar slovenskih besed, ki vam za izbrano besedo pove še sopomenke ter
-                                     protipomenke. Tezaver je <b>popoldanski projekt</b>, ki je namenjen vsem ljubiteljem sopomenk.</p></div>
+                <p class="help-text"><a href="{{ route('home') }}">Sopomenke.si</a> je slovar slovenskih besed, ki vam za izbrano besedo poda sopomenke ter
+                                     protipomenke. <a href="{{ route('home') }}">Sopomenke.si</a> je <b>popoldanski projekt</b>, ki je namenjen vsem ljubiteljem sopomenk.</p></div>
             <div class="col-sm-6 section">
-                <h2>Zakaj tezaver?</h2>
+                <h2>Zakaj sopomenke.si?</h2>
 
-                <p class="help-text">Slovenščina do sedaj še ni imela uporabnega tezavra in je čas, da se to
+                <p class="help-text">Slovenščina do sedaj še ni imela uporabnega slovarja sopomenk in je čas, da se to
                                      spremeni. Prav tako smo bili naveličani uporabe vedno istih besed.</p>
             </div>
         </div>
@@ -69,7 +69,7 @@
                 <div class="col-sm-6 section">
                     <h2>Kako lahko pomagam?</h2>
 
-                    <p class="help-text">Uporabljite tezaver. Če kakšna sopomenka manjka, jo dodajte. Povejte svojim
+                    <p class="help-text">Uporabljite portal <a href="{{ route('home') }}">sopomenke.si</a>. Če kakšna sopomenka manjka, jo dodajte. Povejte svojim
                                          prijateljem in znancem.</br>Bodite dobri drug do drugega in vse bo v redu.</p>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                 </div>
 
                 <div class="col-sm-6 section">
-                    <h2>Ali lahko uporabim podatke iz tezavra?</h2>
+                    <h2>Ali lahko uporabim podatke iz sopomenke.si?</h2>
 
                     <p class="help-text">Seveda. Podatki so javno dostopni in na voljo za brskanje, spreminjanje in uporabo. V pomoč naj ti tudi služi
                         <a href="{{ route('v1.docs') }}">API dokumentacija.</a>

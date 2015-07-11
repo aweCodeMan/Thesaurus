@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('home') }}">Tezaver</a>
+            <a class="navbar-brand" href="{{ route('home') }}">Sopomenke.si</a>
 
         </div>
 

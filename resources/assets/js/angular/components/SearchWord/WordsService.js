@@ -14,17 +14,15 @@ angular.module('thesaurus')
                        }
                    }).then(function (response)
                            {
-
                                if (response.data.length == 0)
                                {
-                                   response.data.push({empty: true});
+                                   response.data.push({word: '', link: 'beseda/' + word, empty: true});
                                    return response.data;
                                }
 
                                return response.data.map(function (item)
                                                         {
                                                             item.typeaheadDefinition = getFirstDefinition(item.definitions);
-
                                                             return item;
                                                         });
                            });

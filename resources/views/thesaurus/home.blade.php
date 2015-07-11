@@ -1,16 +1,16 @@
 @extends('app')
 
 @section('title')
-    Vse slovenske sopomenke in protipomenke
+    Vse slovenske sopomenke
 @endsection
 
 @section('meta')
-    <meta name="description" content="Iščite sopomenke in protipomenke vseh slovenskih besed. Imamo že več kot {{ $data['synonymCount'] + $data['antonymCount'] }} povezanih besed. Naj vam beseda nikoli več ne obstane na jeziku.">
+    <meta name="description" content="Sopomenke.si je slovar slovenskih sopomenk ter protipomenk. Imamo že več kot {{ $data['synonymCount'] }} sopomenk. Naj vam beseda nikoli več ne obstane na jeziku.">
     <meta name="keywords" content="tezaver, sopomenke, protipomenke, slovar, slovenščina, besede">
     <meta name="twitter:card" content="summary"/>
 
-    <meta property="og:title" content="Vse slovenske sopomenke in protipomenke | Tezaver"/>
-    <meta property="og:description" content="Iščite sopomenke in protipomenke vseh slovenskih besed. Imamo že več kot {{ $data['synonymCount'] + $data['antonymCount'] }} povezanih besed. Naj vam beseda nikoli več ne obstane na jeziku."/>
+    <meta property="og:title" content="Vse slovenske sopomenke in protipomenke | Sopomenke.si"/>
+    <meta property="og:description" content="Sopomenke.si je slovar slovenskih sopomenk ter protipomenk. Imamo že več kot {{ $data['synonymCount'] }} sopomenk. Naj vam beseda nikoli več ne obstane na jeziku."/>
     <meta property="og:image" content="/images/favicon.png"/>
 @endsection
 
@@ -21,7 +21,7 @@
                 <div class="col-xs-12">
 
                     <div class="jumbotron">
-                        <h1>Tezaver</h1>
+                        <h1>Sopomenke</h1>
 
                         <p class="tagline">Iščite sopomenke in protipomenke vseh
                                            slovenskih besed.</p>

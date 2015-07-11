@@ -19,6 +19,8 @@ angular.module('thesaurus')
                      },
                      controller:  function ($scope, $http, Words)
                      {
+                         var words = [];
+
                          $scope.selectModel = function (model)
                          {
                              window.location.href = model.link;
@@ -26,7 +28,29 @@ angular.module('thesaurus')
 
                          $scope.getWords = function (word)
                          {
-                             return Words.getWords(word, $scope.url);
+                             words = [];
+                             return Words.getWords(word, $scope.url).then(function (success)
+                                                                          {
+                                                                              words = success;
+                                                                              return success;
+                                                                          }, function (error)
+                                                                          {
+                                                                              return error;
+                                                                          });
+                         };
+
+                         $scope.onEnter = function (query, event)
+                         {
+                             if (event.keyCode == 13 && !$scope.loadingWords)
+                             {
+                                 words.forEach(function (item)
+                                               {
+                                                   if (item.word.toLowerCase() == query.toLowerCase())
+                                                   {
+                                                       window.location.href = item.link;
+                                                   }
+                                               });
+                             }
                          };
                      },
                      link:        function (scope, elem, attr)

@@ -1,12 +1,12 @@
 @extends('app')
 
 @section('meta')
-    <meta name="description" content="Prebrskajte po seznamu vseh slovenskih sopomenk.">
-    <meta name="keywords" content="tezaver, sopomenke, slovar, slovenščina, besede">
+    <meta name="description" content="Sopomenke so besedni pari z enakim pomenom. Prebrskajte po seznamu vseh slovenskih sopomenk.">
+    <meta name="keywords" content="tezaver, protipomenke, slovar, slovenščina, besede, sopomenke">
     <meta name="twitter:card" content="summary"/>
 
-    <meta property="og:title" content="Vse slovenske sopomenke | Tezaver"/>
-    <meta property="og:description" content="Prebrskajte po seznamu vseh slovenskih sopomenk."/>
+    <meta property="og:title" content="Vse slovenske sopomenke | Sopomenke.si"/>
+    <meta property="og:description" content="Sopomenke so besedni pari z enakim pomenom. Prebrskajte po seznamu vseh slovenskih sopomenk."/>
     <meta property="og:image" content="/images/favicon.png"/>
 @endsection
 

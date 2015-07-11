@@ -10,7 +10,7 @@
 
     @yield('meta')
 
-    <title>@yield('title') | Tezaver Betoo</title>
+    <title>@yield('title') | Sopomenke.si</title>
 
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet" async="true">
 

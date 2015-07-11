@@ -4,7 +4,8 @@
        typeahead="word as word.word for word in getWords($viewValue) | filter:$viewValue | limitTo:5"
        typeahead-loading="loadingWords"
        class="form-control"
-       typeahead-wait-ms="250">
+       typeahead-wait-ms="250"
+        ng-keypress="onEnter(selectedWord, $event)">
 
 <div style="position: relative;">
     <i ng-show="loadingWords" class="search-refresh glyphicon spin glyphicon-refresh"></i>
