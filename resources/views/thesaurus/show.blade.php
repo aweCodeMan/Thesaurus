@@ -1,12 +1,15 @@
 @extends('app')
 
 @section('meta')
-    <meta name="description" content="Izvedite katere sopomenke in protipomenke obstajajo za besedo {{ ucfirst($query) }}.">
+
+    <meta name="description" content="{{ $description }}">
+    <meta property="og:description" content="{{ $description }}"/>
+
+
     <meta name="keywords" content="tezaver, sopomenke, protipomenke, slovar, slovenščina, besede">
     <meta name="twitter:card" content="summary"/>
 
     <meta property="og:title" content="{{ ucfirst($query) }} | Tezaver"/>
-    <meta property="og:description" content="Izvedite katere sopomenke in protipomenke obstajajo za besedo {{ ucfirst($query) }}."/>
     <meta property="og:image" content="/images/favicon.png"/>
 @endsection
 
@@ -30,7 +33,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <h2>{{ $word->pronunciation }}
-                            <span class="word-tags text-muted"><b>{{ $word->tags }}</b></span>
+                            <!-- <span class="word-tags text-muted"><b>{{ $word->tags }}</b></span> -->
                         </h2>
 
 

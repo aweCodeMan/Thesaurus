@@ -71,8 +71,9 @@ class ThesaurusController extends Controller
     public function show($word)
     {
         $words = Word::whereWord($word)->get();
+        $description = $this->generateDescription($words, $word);
 
-        return view('thesaurus.show')->with('words', $words)->with('query', $word);
+        return view('thesaurus.show')->with('words', $words)->with('query', $word)->with('description', $description);
     }
 
     /**
@@ -169,5 +170,42 @@ class ThesaurusController extends Controller
                                     ->paginate(60);
 
         return view('thesaurus.antonyms')->with('antonyms', $antonyms);
+    }
+
+    /**
+     *  Generate a meta description
+     *
+     * @param $words
+     *
+     * @return string
+     *
+     */
+    private function generateDescription($words, $query)
+    {
+        $count = 0;
+
+        foreach ($words as $word)
+        {
+            $count += $word->synonyms->count();
+        }
+
+        if ($count == 0)
+        {
+            return 'Beseda ' . $query . ' nima še nobene sopomenke. Pomagajte ostalim s tem, da dodate besedi ' . $query . ' novo sopomenko.';
+        }
+        else if ($count == 1)
+        {
+            return 'Beseda ' . $query . ' ima 1 sopomenko. Preverite katera sopomenka obstaja za besedo ' . $query . '.';
+        }
+        else if ($count == 2)
+        {
+            return 'Beseda ' . $query . ' ima 2 sopomenki. Preverite kateri sopomenki obstajata za besedo ' . $query . '.';
+        }
+        else if ($count == 3 || $count == 4)
+        {
+            return 'Beseda ' . $query . ' ima ' . $count . ' sopomenke. Preverite katere sopomenke obstajajo za besedo ' . $query . '.';
+        }
+
+        return 'Beseda ' . $query . ' ima ' . $count . ' sopomenk. Preverite katere sopomenke obstajajo za besedo ' . $query . '.';
     }
 }
