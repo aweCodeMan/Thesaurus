@@ -37,7 +37,7 @@
                         </h2>
 
 
-                        @include('thesaurus.partials.definitions', array('definitions' => $word->definitions))
+                        <!--  @include('thesaurus.partials.definitions', array('definitions' => $word->definitions)) -->
 
                         <div class="row">
                             <div class="col-sm-6">
