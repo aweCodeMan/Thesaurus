@@ -50,6 +50,8 @@
 
     @yield('content')
 
+    @include('partials.survey')
+
     <!-- Used for sticky footer -->
     <div class="push"></div>
 </div>
